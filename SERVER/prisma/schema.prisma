@@ -15,61 +15,66 @@ datasource db {
 }
 
 model Empresa {
-  id Int @id @default(autoincrement())
-  nome String
-  cnpj Decimal @unique
-  email String
+  id       Int     @id @default(autoincrement())
+  nome     String
+  cnpj     Decimal @unique
+  email    String
   telefone Decimal
 
   funcionario Funcionario[]
-  pagamento Pagamento[]
+  pagamento   Pagamento[]
+
   @@map("empresas")
 }
 
-model Funcionario{
-  id Int @id @default(autoincrement())
-  nome String
-  cpf Decimal @unique
-  email String?
-  telefone Decimal?
-  empresa_id Int
-  cargo String
+model Funcionario {
+  id            Int      @id @default(autoincrement())
+  nome          String
+  cpf           Decimal  @unique
+  email         String?
+  telefone      Decimal?
+  empresa_id    Int
+  cargo         String
   hora_prevista Float
-  salario Float
-  valor_hora Float
+  salario       Float
+  valor_hora    Float
 
   empresa Empresa @relation(fields: [empresa_id], references: [id])
 
   historico Historico[]
   pagamento Pagamento[]
+
   @@map("funcionarios")
 }
 
-
-model Pagamento{
-  id String @id @default(uuid())
-  funcionario_id Int
-  empresa_id Int
+model Pagamento {
+  id              String   @id @default(uuid())
+  funcionario_id  Int
+  empresa_id      Int
   hora_trabalhada Float
-  salario_bruto Float
-  valor_hora Float
-  desc_inss Float
-  desc_ir Float
-  salario_liqui Float
-  data DateTime @default(now())
+  salario_bruto   Float
+  valor_hora      Float
+  desc_inss       Float
+  desc_ir         Float
+  salario_liqui   Float
+  data            DateTime @default(now())
 
   historico Historico[]
 
-  empresa Empresa @relation(fields: [empresa_id], references: [id])
+  empresa     Empresa     @relation(fields: [empresa_id], references: [id])
   funcionario Funcionario @relation(fields: [funcionario_id], references: [id])
+  empresaId   Int
 
+  @@unique([funcionario_id, data])
   @@map("pagamentos")
 }
 
 model Historico {
-  id String @id @default(uuid())
-  funcionario Funcionario? @relation(fields: [funcionario_id], references: [id])
+  id             String       @id @default(uuid())
+  funcionario    Funcionario? @relation(fields: [funcionario_id], references: [id])
   funcionario_id Int?
-  pagamento Pagamento? @relation(fields: [pagamento_id], references: [id])
-  pagamento_id String?
+  pagamento      Pagamento?   @relation(fields: [pagamento_id], references: [id])
+  pagamento_id   String?
+
+  @@map("historico")
 }
