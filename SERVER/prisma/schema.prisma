@@ -61,20 +61,20 @@ model Pagamento {
 
   historico Historico[]
 
-  empresa     Empresa     @relation(fields: [empresa_id], references: [id])
   funcionario Funcionario @relation(fields: [funcionario_id], references: [id])
-  empresaId   Int
+  empresa     Empresa     @relation(fields: [empresa_id], references: [id])
 
   @@unique([funcionario_id, data])
   @@map("pagamentos")
 }
 
 model Historico {
-  id             String       @id @default(uuid())
-  funcionario    Funcionario? @relation(fields: [funcionario_id], references: [id])
+  id             String  @id @default(uuid())
   funcionario_id Int?
-  pagamento      Pagamento?   @relation(fields: [pagamento_id], references: [id])
   pagamento_id   String?
+
+  pagamento   Pagamento?   @relation(fields: [pagamento_id], references: [id])
+  funcionario Funcionario? @relation(fields: [funcionario_id], references: [id])
 
   @@map("historico")
 }
