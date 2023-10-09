@@ -1,0 +1,65 @@
+POST em empresas
+ROTA: localhost:3333/empresas
+JSON esperado: 
+{
+  "nome": "Nome da Empresa",
+  "cnpj": 12345678901234,
+  "email": "empresa@exemplo.com.br",
+  "telefone": 1234567890
+}
+
+==================================================================
+
+GET de * empresas
+ROTA: localhost:3333/empresas
+JSON esperado: 
+[
+	{
+		"id": 1,
+		"nome": "ALURA COMERCIO DE LIVROS E TREINAMENTOS LTDA",
+		"cnpj": "21686294000127",
+		"email": "comercial@alura.dev.br",
+		"telefone": "11912345678"
+	},
+  {
+		"id": 2,
+		"nome": "\tCENTRO EDUCACIONAL ROSA CHAMMA",
+		"cnpj": "5857270000137",
+		"email": "rh@cerc.com.br",
+		"telefone": "21925462587"
+	},
+]
+
+===================================================================
+
+GET de 1 empresas
+ROTA: localhost:3333/empresas/:id
+JSON esperado: 
+{
+	"id": 1,
+  "nome": "Nome da Empresa",
+  "cnpj": 12345678901234,
+  "email": "empresa@exemplo.com.br",
+  "telefone": 1234567890
+}
+
+==================================================================
+
+DELETE em empresas
+ROTA: localhost:3333/empresas/:id
+JSON esperado: 
+{
+  "id": 1
+}
+
+==================================================================
+
+PATCH em empresas
+ROTA: localhost:3333/empresas/:id
+JSON esperado: 
+{
+  "nome": "Nome da Empresa",
+  "cnpj": 12345678901234,
+  "email": "empresa@exemplo.com.br",
+  "telefone": 1234567890
+}

@@ -1,0 +1,123 @@
+POST em funcionarios
+ROTA: localhost:3333/funcionarios
+JSON esperado:
+{
+  "nome": "Nome do Funcionário",
+  "cpf": 12345678900,
+  "email": "funcionario@exemplo.com.br",
+  "telefone": 1234567890,
+  "empresa_id": 1,
+  "cargo": "Cargo do Funcionário",
+  "hora_prevista": 220,
+  "salario": 2000.0,
+  "valor_hora": 25.0
+}
+
+==================================================================
+
+GET * dos funcionarios
+ROTA: localhost:3333/funcionarios
+
+JSON esperado:
+[
+  {
+    "id": 1,
+    "nome": "Nome do Funcionário 1",
+    "cpf": 12345678901,
+    "email": "funcionario1@exemplo.com.br",
+    "telefone": 1234567890,
+    "empresa_id": 1,
+    "cargo": "Cargo do Funcionário 1",
+    "hora_prevista": 8.0,
+    "salario": 2000.0,
+    "valor_hora": 25.0
+  },
+  {
+    "id": 2,
+    "nome": "Nome do Funcionário 2",
+    "cpf": 12345678902,
+    "email": "funcionario2@exemplo.com.br",
+    "telefone": 1234567891,
+    "empresa_id": 1,
+    "cargo": "Cargo do Funcionário 2",
+    "hora_prevista": 7.5,
+    "salario": 1800.0,
+    "valor_hora": 24.0
+  }
+]
+
+================================================================
+
+GET de um funcionario específico
+ROTA: localhost:3333/funcionarios/:id
+JSON esperado:
+{
+  "id": 1,
+  "nome": "Nome do Funcionário",
+  "cpf": 12345678900,
+  "email": "funcionario@exemplo.com.br",
+  "telefone": 1234567890,
+  "empresa_id": 1,
+  "cargo": "Cargo do Funcionário",
+  "hora_prevista": 8.0,
+  "salario": 2000.0,
+  "valor_hora": 25.0
+}
+
+================================================================
+
+DELETE em funcionarios
+ROTA: localhost:3333/funcionarios/:id
+JSON esperado:
+{
+  "id": 1
+}
+
+================================================================
+
+PATCH em funcionarios
+ROTA: localhost:3333/funcionarios/:id
+JSON esperado:
+{
+  "nome": "Novo Nome do Funcionário",
+  "cpf": 98765432100,
+  "email": "novo.funcionario@exemplo.com.br",
+  "telefone": 9876543210,
+  "empresa_id": 2,
+  "cargo": "Novo Cargo do Funcionário",
+  "hora_prevista": 7.0,
+  "salario": 1800.0,
+  "valor_hora": 20.0
+}
+
+================================================================
+
+GET de funcionários por empresa
+ROTA: localhost:3333/empresas/:id/funcionarios
+JSON esperado:
+[
+  {
+    "id": 1,
+    "nome": "Nome do Funcionário 1",
+    "cpf": 12345678901,
+    "email": "funcionario1@exemplo.com.br",
+    "telefone": 1234567890,
+    "empresa_id": 1,
+    "cargo": "Cargo do Funcionário 1",
+    "hora_prevista": 8.0,
+    "salario": 2000.0,
+    "valor_hora": 25.0
+  },
+  {
+    "id": 2,
+    "nome": "Nome do Funcionário 2",
+    "cpf": 12345678902,
+    "email": "funcionario2@exemplo.com.br",
+    "telefone": 1234567891,
+    "empresa_id": 1,
+    "cargo": "Cargo do Funcionário 2",
+    "hora_prevista": 7.5,
+    "salario": 1800.0,
+    "valor_hora": 24.0
+  }
+]

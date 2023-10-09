@@ -1,0 +1,18 @@
+GET por empresa para historico de funcionario
+ROTA: localhost:3333/historico/empresa/1
+
+==============================================================
+
+GET por funcionario para historico
+ROTA: localhost:3333/historico/funcionario/1
+
+==============================================================
+
+GET por mes
+ROTA: localhost:3333/pagamentos/:mes
+Exemplo: localhost:3333/pagamentos/10
+
+==============================================================
+
+GET de 1 pagamento
+rota: localhost:3333/historico/pagamento/:id'

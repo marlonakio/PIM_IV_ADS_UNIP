@@ -1,0 +1,40 @@
+POST em pagamentos
+ROTA: localhost:3333/pagamentos
+JSON esperado: 
+{
+  "funcionario_id": 8,        
+  "hora_trabalhada": 223       
+}
+
+JSON retorno esperado:
+{
+	"id": "b095c8d7-6f0c-4bb0-8213-b93154b0bd1e",
+	"funcionario_id": 8,
+	"empresa_id": 2,
+	"hora_trabalhada": 223,
+	"salario_bruto": 1346.92,
+	"valor_hora": 6.04,
+	"desc_inss": 121.22,
+	"desc_ir": 101.02,
+	"salario_liqui": 1124.68,
+	"data": "2023-10-09T02:25:44.217Z",
+	"empresaId": 2
+}
+
+==============================================================
+
+DELETE em pagamentos
+ROTA: localhost:3333/pagamentos/:id
+{ 
+}
+
+
+==============================================================
+
+PATCH em pagamentos
+ROTA: localhost:3333/pagamentos/:id
+JSON esperado: 
+{ 
+	"funcionario_id":2,  
+  "hora_trabalhada": 220       
+}
