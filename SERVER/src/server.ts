@@ -5,6 +5,7 @@ import apiEmpresasRoutes from './empresas.api';
 import apiFuncionariosRoutes from './funcionarios.api';
 import apiPagamentosRoutes from './pagamentos.api';
 import apiHistoricoRoutes from './historico.api';
+import apiUsuariosRoutes from './usuarios.api';
 
 const app = fastify();
 const prisma = new PrismaClient();
@@ -16,6 +17,7 @@ app.register(apiEmpresasRoutes);
 app.register(apiFuncionariosRoutes);
 app.register(apiPagamentosRoutes);
 app.register(apiHistoricoRoutes);
+app.register(apiUsuariosRoutes);
 
 app.listen({
   port: 3333,

@@ -78,3 +78,13 @@ model Historico {
 
   @@map("historico")
 }
+
+model Usuario {
+  id    Int     @id @default(autoincrement())
+  nome  String
+  email String  @unique
+  senha String
+  rh    Boolean
+
+  @@map("usuarios")
+}

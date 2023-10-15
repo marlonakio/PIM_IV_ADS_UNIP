@@ -1,0 +1,28 @@
+POST em usuarios
+ROTA: localhost:3333/usuarios
+JSON esperado: 
+{
+  "nome": "Nome do Usuário",
+  "email": "usuario@exemplo.com.br",
+  "senha": "senhaSegura@123"
+}
+
+==============================================================
+
+POST para realizar login
+ROTA: localhost:3333/login
+JSON esperado: 
+{
+  "email": "usuario@exemplo.com.br",
+  "senha": "senhaSegura@123"
+}
+
+Login correto:
+{ 
+  "autenticado": true
+}
+
+Login false:
+{ 
+  "autenticado": true
+}

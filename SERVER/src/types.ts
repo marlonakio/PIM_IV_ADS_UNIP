@@ -4,7 +4,6 @@ export interface EmpresaType {
   email: string;
   telefone: number;
   id: number ;
-
 }
 export interface FuncionarioType {
   nome: string;
@@ -21,4 +20,10 @@ export interface FuncionarioType {
 export interface PagamentoType {
   funcionario_id: number;
   hora_trabalhada: number;
+}
+
+export interface UsuarioType{
+  nome: string;
+  email: string;
+  senha: string;
 }
