@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-br" data-bs-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../CSS/login.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/script.js"></script>
+    <title>Start RH</title>
+</head>
+<body>
+    
+    <header class=" d-flex justify-content-around">
+        <img onclick="homeFuncionario()" class="mt-2" src="../img/logo.png" alt="" width="100px" height="100px" style="cursor: pointer">
+        <div class="header-funcionario d-flex justify-content-around">
+            <h1 class="text-center fs-3 text mt-5" id="nameFuncionario">Luana Tibirica Nascimento</h1>
+            <img class="mt-3" id="imgFuncionario" src="../img/luana.jpg" alt="" width="100px" height="100px" >
+        </div>
+    </header>
+
+    <section class=" section-home-funcionario">
+        <div class=" section-pages-funcionario d-flex">
+            <div onclick="AReceber()" class=" card d-flex align-items-center">
+                <p class=" fs-3 align-items-center">A Receber</p>
+            </div>
+            <div onclick="historicoHolerite()" class=" card d-flex align-items-center">
+                <p class=" fs-3 align-items-center">Histórico Holerite</p>
+            </div>
+            <div onclick="historicoSalario()" class=" card d-flex align-items-center">
+                <p class=" fs-3 align-items-center">Histórico Salarial</p>
+            </div>
+        </div>
+        <div class="height-pages-funcionario section-pages-funcionario d-flex">
+            <div onclick="pontoEletronico()" class=" card d-flex align-items-center">
+                <p class=" fs-3 align-items-center">Ponto Eletrônico</p>
+            </div>
+            <div onclick="ferias()" class=" card d-flex align-items-center">
+                <p class=" fs-3 align-items-center">Férias</p>
+            </div>
+            <div onclick="documentos()" class=" card d-flex align-items-center">
+                <p class=" fs-3 align-items-center">Documentos</p>
+            </div>
+        </div>
+    </section>
+    
+</body>
+</html>
