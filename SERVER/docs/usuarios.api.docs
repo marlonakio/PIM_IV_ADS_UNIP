@@ -4,7 +4,8 @@ JSON esperado:
 {
   "nome": "Nome do Usuário",
   "email": "usuario@exemplo.com.br",
-  "senha": "senhaSegura@123"
+  "senha": "senhaSegura@123",
+  "rh": true
 }
 
 ==============================================================
@@ -19,7 +20,8 @@ JSON esperado:
 
 Login correto:
 { 
-  "autenticado": true
+  "autenticado": true,
+  "rh": true
 }
 
 Login false:
