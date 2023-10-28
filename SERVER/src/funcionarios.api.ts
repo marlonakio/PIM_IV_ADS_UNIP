@@ -8,8 +8,9 @@ const apiFuncionariosRoutes: FastifyPluginCallback = (fastify, options, done) =>
   // POST em funcionário
   fastify.post('/funcionarios', async (request, reply) => {
     try {
-      const { nome, cpf, email, telefone, empresa_id, cargo, hora_prevista, salario, valor_hora } = request.body as FuncionarioType;
-
+      const { nome, cpf, email, telefone, empresa_id, cargo, hora_prevista, salario} = request.body as FuncionarioType;
+      const valor_hora = (salario/hora_prevista).toFixed(2);
+      
       const funcionario = await prisma.funcionario.create({
         data: {
           nome,
@@ -20,7 +21,7 @@ const apiFuncionariosRoutes: FastifyPluginCallback = (fastify, options, done) =>
           cargo,
           hora_prevista,
           salario,
-          valor_hora,
+          valor_hora: parseFloat(valor_hora)
         },
       });
 
@@ -32,15 +33,40 @@ const apiFuncionariosRoutes: FastifyPluginCallback = (fastify, options, done) =>
   });
 
   // GET de * funcionários
-  fastify.get('/funcionarios', async (request, reply) => {
-    try {
-      const funcionarios = await prisma.funcionario.findMany();
-      reply.send(funcionarios);
-    } catch (error) {
-      console.error('Erro ao buscar funcionários:', error);
-      reply.status(500).send({ error: 'Erro ao buscar funcionários' });
-    }
-  });
+fastify.get('/funcionarios', async (request, reply) => {
+  try {
+    const funcionarios = await prisma.funcionario.findMany({
+      include: {
+        empresa: {
+          select: {
+            nome: true
+          }
+        }
+      }
+    });
+
+    const dataReturn = funcionarios.map((funcionario) => {
+      return {
+        id: funcionario.id,
+        nome: funcionario.nome,
+        cpf: funcionario.cpf,
+        email: funcionario.email,
+        telefone: funcionario.telefone,
+        empresa: funcionario.empresa.nome,
+        cargo: funcionario.cargo,
+        hora_prevista: funcionario.hora_prevista,
+        salario: funcionario.salario,
+        valor_hora: funcionario.valor_hora
+      };
+    });
+
+    reply.send(dataReturn);
+  } catch (error) {
+    console.error('Erro ao buscar funcionários:', error);
+    reply.status(500).send({ error: 'Erro ao buscar funcionários' });
+  }
+});
+
 
   // GET de 1 funcionários
   fastify.get('/funcionarios/:id', async (request, reply) => {
@@ -98,7 +124,8 @@ const apiFuncionariosRoutes: FastifyPluginCallback = (fastify, options, done) =>
   fastify.patch('/funcionarios/:id', async (request, reply) => {
     try {
       const { id } = request.params as { id: string };
-      const { nome, cpf, email, telefone, empresa_id, cargo, hora_prevista, salario, valor_hora } = request.body as FuncionarioType;
+      const { nome, cpf, email, telefone, cargo, hora_prevista, salario} = request.body as FuncionarioType;
+      const valor_hora = (salario/hora_prevista).toFixed(2);
 
       const funcionario = await prisma.funcionario.findUnique({
         where: {
@@ -120,11 +147,10 @@ const apiFuncionariosRoutes: FastifyPluginCallback = (fastify, options, done) =>
           cpf,
           email,
           telefone,
-          empresa_id,
           cargo,
           hora_prevista,
           salario,
-          valor_hora,
+          valor_hora: parseFloat(valor_hora)
         },
       });
 
@@ -158,7 +184,12 @@ const apiFuncionariosRoutes: FastifyPluginCallback = (fastify, options, done) =>
         },
       });
 
-      reply.send(funcionarios);
+      const funcionariosMap = funcionarios.map((funcionario) => ({
+      ...funcionario,
+      nome_empresa: empresa.nome, // Adicione o nome da empresa
+    }));
+
+      reply.send(funcionariosMap);
     } catch (error) {
       console.error('Erro ao buscar funcionários da empresa:', error);
       reply.status(500).send({ error: 'Erro ao buscar funcionários da empresa' });

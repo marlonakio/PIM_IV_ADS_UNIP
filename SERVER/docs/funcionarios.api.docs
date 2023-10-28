@@ -9,10 +9,18 @@ JSON esperado:
   "empresa_id": 1,
   "cargo": "Cargo do Funcionário",
   "hora_prevista": 220,
-  "salario": 2000.0,
-  "valor_hora": 25.0
+  "salario": 2000.0
 }
 
+{
+   nome: "Marlon Akio Tochiro",
+    cpf: 51651981919,
+     email: "marlon.akto@gmail.com",
+     telefone: 15616516516, 
+     empresa_id: 1, 
+     cargo: "Developer", 
+     hora_prevista: 220, 
+     salario: 3000 }
 ==================================================================
 
 GET * dos funcionarios
@@ -20,30 +28,30 @@ ROTA: localhost:3333/funcionarios
 
 JSON esperado:
 [
-  {
-    "id": 1,
-    "nome": "Nome do Funcionário 1",
-    "cpf": 12345678901,
-    "email": "funcionario1@exemplo.com.br",
-    "telefone": 1234567890,
-    "empresa_id": 1,
-    "cargo": "Cargo do Funcionário 1",
-    "hora_prevista": 8.0,
-    "salario": 2000.0,
-    "valor_hora": 25.0
-  },
-  {
-    "id": 2,
-    "nome": "Nome do Funcionário 2",
-    "cpf": 12345678902,
-    "email": "funcionario2@exemplo.com.br",
-    "telefone": 1234567891,
-    "empresa_id": 1,
-    "cargo": "Cargo do Funcionário 2",
-    "hora_prevista": 7.5,
-    "salario": 1800.0,
-    "valor_hora": 24.0
-  }
+	{
+		"id": 1,
+		"nome": "Melissa Sousa Rocha",
+		"cpf": "97291226015",
+		"email": "mel.rocha@gmail.com",
+		"telefone": "11958752364",
+		"empresa": "ALURA COMERCIO DE LIVROS E TREINAMENTOS LTDA",
+		"cargo": "Comercial",
+		"hora_prevista": 220,
+		"salario": 2518,
+		"valor_hora": 11.44
+	},
+	{
+		"id": 2,
+		"nome": "Lucas Cavalcanti Barros",
+		"cpf": "55730668546",
+		"email": "lucas.c.barros@yahoo.com",
+		"telefone": "11953256548",
+		"empresa": "ALURA COMERCIO DE LIVROS E TREINAMENTOS LTDA",
+		"cargo": "Professor",
+		"hora_prevista": 220,
+		"salario": 4193,
+		"valor_hora": 19.05
+	},
 ]
 
 ================================================================
@@ -83,11 +91,9 @@ JSON esperado:
   "cpf": 98765432100,
   "email": "novo.funcionario@exemplo.com.br",
   "telefone": 9876543210,
-  "empresa_id": 2,
   "cargo": "Novo Cargo do Funcionário",
-  "hora_prevista": 7.0,
-  "salario": 1800.0,
-  "valor_hora": 20.0
+  "hora_prevista": 220.0,
+  "salario": 1800.0
 }
 
 ================================================================

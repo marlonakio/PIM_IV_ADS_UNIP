@@ -114,7 +114,7 @@ const apiEmpresasRoutes: FastifyPluginCallback = (fastify, options, done) => {
         nome,
         cnpj,
         email,
-        telefone,
+        telefone
       },
     });
 
