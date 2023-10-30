@@ -1,0 +1,31 @@
+.text-color{
+    color: #fff !important;
+}
+
+.color-pupple-light{
+    color: #7855C3 !important;
+}
+
+.bk-pupple-light{
+    background-color: #7855C3 !important;
+}
+
+.bk-pupple-dark{
+    background-color: #171322 !important;
+}
+
+.bk-pupple-gray{
+    background-color: #282433 !important;
+}
+
+.border-left-pupple-light {
+    border-left: 0.25rem solid #7855C3 !important;
+}
+
+.topbar #sidebarToggleTop:active {
+    background-color: #5c3ca3 !important;
+}
+
+.topbar #sidebarToggleTop:hover {
+    background-color: #5c3ca3 !important;
+}

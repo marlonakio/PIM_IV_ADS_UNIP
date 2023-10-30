@@ -1,3 +1,17 @@
+function eye(){
+ let inputPass = document.getElementById("senha")
+ let btnShowPass = document.getElementById("eye")
+ 
+ if(inputPass.type === 'password'){
+    inputPass.setAttribute('type', 'text')
+    btnShowPass.classList.replace('bi-eye-fill', 'bi-eye-slash-fill')
+ }else{
+    inputPass.setAttribute('type', 'password')
+    btnShowPass.classList.replace('bi-eye-slash-fill', 'bi-eye-fill')
+ }
+
+}
+
 document.addEventListener("DOMContentLoaded", function(){
   const entrarButton = document.querySelector('.btn.btn-outline-primary');
 
@@ -40,13 +54,13 @@ document.addEventListener("DOMContentLoaded", function(){
         if(data.rh === true){
           setTimeout(function () {
             console.log('logado');
-            window.location.href = "./rh/";
+            window.location.href = "./rh/home/";
           }, 3000)
         }
         if(data.rh === false){
           setTimeout(function () {
             console.log('logado');
-            window.location.href = "./funcionario/";
+            window.location.href = "./funcionario/home/";
           }, 3000)
         }
       }

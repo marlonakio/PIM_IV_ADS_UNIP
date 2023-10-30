@@ -1,0 +1,23 @@
+.card:hover {
+    background-color: #7855C3;
+    border: #7855C3;
+    color: #fff;
+}
+.btn-hover:hover{
+    color: #fff !important;
+}
+
+.btn-boder:hover {
+    border-left: 0.25rem solid #fff !important;
+}
+
+.card{
+    cursor: pointer;
+}
+
+
+@media screen and (max-width: 768px){
+    .sidebar {
+        width: 8rem;
+    }
+}
