@@ -6,11 +6,12 @@ const apiPagamentosRoutes: FastifyPluginCallback = (fastify, options, done) => {
   const prisma = new PrismaClient();
 
   fastify.post('/pagamentos', async (request, reply) => {
-    try {
-      const body = request.body as PagamentoType;
+  try {
+    const payments = request.body as PagamentoType[];
+    const createdPayments = [];
 
-      const funcionario_id = body.funcionario_id;
-      const hora_trabalhada = body.hora_trabalhada;
+    for (const payment of payments) {
+      const { funcionario_id, hora_trabalhada } = payment;
 
       const funcionario = await prisma.funcionario.findUnique({
         where: {
@@ -19,18 +20,17 @@ const apiPagamentosRoutes: FastifyPluginCallback = (fastify, options, done) => {
       });
 
       if (!funcionario) {
-        reply.status(404).send({ error: 'Funcionário não encontrado' });
+        reply.status(404).send({ error: `Funcionário com ID ${funcionario_id} não encontrado` });
         return;
       }
 
       const empresa_id = funcionario.empresa_id;
-      const empresaId = funcionario.empresa_id;
 
       let salario_bruto = hora_trabalhada * funcionario.valor_hora;
       salario_bruto = Number(salario_bruto.toFixed(2));
 
       let desc_inss = salario_bruto * 0.09;
-      desc_inss = Number(desc_inss.toFixed(2)); 
+      desc_inss = Number(desc_inss.toFixed(2));
 
       let desc_ir = salario_bruto * 0.075;
       desc_ir = Number(desc_ir.toFixed(2));
@@ -38,12 +38,10 @@ const apiPagamentosRoutes: FastifyPluginCallback = (fastify, options, done) => {
       let salario_liqui = salario_bruto - (desc_inss + desc_ir);
       salario_liqui = Number(salario_liqui.toFixed(2));
 
-  
       const pagamento = await prisma.pagamento.create({
         data: {
           funcionario_id,
           empresa_id,
-          empresaId,
           hora_trabalhada,
           salario_bruto,
           valor_hora: funcionario.valor_hora,
@@ -52,6 +50,7 @@ const apiPagamentosRoutes: FastifyPluginCallback = (fastify, options, done) => {
           salario_liqui,
         },
       });
+
       await prisma.historico.create({
         data: {
           pagamento_id: pagamento.id,
@@ -59,12 +58,16 @@ const apiPagamentosRoutes: FastifyPluginCallback = (fastify, options, done) => {
         },
       });
 
-      reply.status(201).send(pagamento);
-    } catch (error) {
-      console.error('Erro ao criar pagamento:', error);
-      reply.status(500).send({ error: 'Erro ao criar pagamento' });
+      createdPayments.push(pagamento);
     }
-  });
+
+    reply.status(201).send(createdPayments);
+  } catch (error) {
+    console.error('Erro ao criar pagamento:', error);
+    reply.status(500).send({ error: 'Erro ao criar pagamento' });
+  }
+});
+
 
   // PATCH em pagamentos/:id
   fastify.patch('/pagamentos/:id', async (request, reply) => {

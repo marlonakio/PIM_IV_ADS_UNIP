@@ -1,25 +1,61 @@
 POST em pagamentos
 ROTA: localhost:3333/pagamentos
 JSON esperado: 
-{
-  "funcionario_id": 8,        
-  "hora_trabalhada": 223       
-}
+[
+  {
+    "funcionario_id": 13,
+    "hora_trabalhada": 220
+  },
+  {
+    "funcionario_id": 14,
+    "hora_trabalhada": 225
+  },
+  {
+    "funcionario_id": 15,
+    "hora_trabalhada": 245
+  }
+]
+
 
 JSON retorno esperado:
-{
-	"id": "b095c8d7-6f0c-4bb0-8213-b93154b0bd1e",
-	"funcionario_id": 8,
-	"empresa_id": 2,
-	"hora_trabalhada": 223,
-	"salario_bruto": 1346.92,
-	"valor_hora": 6.04,
-	"desc_inss": 121.22,
-	"desc_ir": 101.02,
-	"salario_liqui": 1124.68,
-	"data": "2023-10-09T02:25:44.217Z",
-	"empresaId": 2
-}
+[
+	{
+		"id": "866d2361-86de-433e-aed6-a47e4c5dedfc",
+		"funcionario_id": 13,
+		"empresa_id": 3,
+		"hora_trabalhada": 220,
+		"salario_bruto": 1944.8,
+		"valor_hora": 8.84,
+		"desc_inss": 175.03,
+		"desc_ir": 145.86,
+		"salario_liqui": 1623.91,
+		"data": "2023-10-28T15:05:40.824Z"
+	},
+	{
+		"id": "5a916f2b-7d6a-4292-b779-3838792c5f0c",
+		"funcionario_id": 14,
+		"empresa_id": 3,
+		"hora_trabalhada": 225,
+		"salario_bruto": 4871.25,
+		"valor_hora": 21.65,
+		"desc_inss": 438.41,
+		"desc_ir": 365.34,
+		"salario_liqui": 4067.5,
+		"data": "2023-10-28T15:05:40.852Z"
+	},
+	{
+		"id": "ecfc72b1-b8b1-4cc5-b508-83855d6d4753",
+		"funcionario_id": 15,
+		"empresa_id": 3,
+		"hora_trabalhada": 245,
+		"salario_bruto": 2616.6,
+		"valor_hora": 10.68,
+		"desc_inss": 235.49,
+		"desc_ir": 196.24,
+		"salario_liqui": 2184.87,
+		"data": "2023-10-28T15:05:40.878Z"
+	}
+]
 
 ==============================================================
 
