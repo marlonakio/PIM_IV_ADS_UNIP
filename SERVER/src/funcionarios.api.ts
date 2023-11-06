@@ -186,7 +186,45 @@ fastify.get('/funcionarios', async (request, reply) => {
 
       const funcionariosMap = funcionarios.map((funcionario) => ({
       ...funcionario,
-      nome_empresa: empresa.nome, // Adicione o nome da empresa
+      nome_empresa: empresa.nome,
+    }));
+
+      reply.send(funcionariosMap);
+    } catch (error) {
+      console.error('Erro ao buscar funcionários da empresa:', error);
+      reply.status(500).send({ error: 'Erro ao buscar funcionários da empresa' });
+    }
+  });
+
+
+  //GET para mostrar os funcionarios de uma empresa para pagamento
+  fastify.get('/empresas/:id/pagamento', async (request, reply) => {
+    try {
+      const { id } = request.params as { id: string };
+
+      const empresa = await prisma.empresa.findUnique({
+        where: {
+          id: parseInt(id),
+        },
+      });
+
+      if (!empresa) {
+        reply.status(404).send({ error: 'Empresa não encontrada' });
+        return;
+      }
+
+      const funcionarios = await prisma.funcionario.findMany({
+        where: {
+          empresa_id: parseInt(id),
+        },
+      });
+
+      const funcionariosMap = funcionarios.map((funcionario) => ({
+      funcionario_id: funcionario.id,
+      funcionario_nome: funcionario.nome,
+      funcionario_cpf: funcionario.cpf,
+      nome_empresa: empresa.nome,
+      funcionario_hora_prevista: funcionario.hora_prevista
     }));
 
       reply.send(funcionariosMap);
