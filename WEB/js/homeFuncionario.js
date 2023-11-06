@@ -1,15 +1,15 @@
 function homeFuncionario(){
-    location.href = "../home/index.html"
+    location.href = "../home/"
 }
 
 function AReceber(){
-    location.href = "../aReceber/index.html"
+    location.href = "../aReceber/"
 }
 
 function historicoHolerite(){
-    location.href = "../historicoHolerite/index.html"
+    location.href = "../historicoHolerite/"
 }
 
 function desemvolvimento(){
-    location.href = "../emDesenvolvimento/index.html"
+    location.href = "../emDesenvolvimento/"
 }

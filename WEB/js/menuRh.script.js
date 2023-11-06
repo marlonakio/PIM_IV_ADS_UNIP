@@ -14,7 +14,6 @@ function HPagamento(){
     location.href = "../historicoPagamento/"
 }
 
-
 function desemvolvimento(){
     location.href = "../emDesenvolvimento/"
 }

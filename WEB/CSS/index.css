@@ -1,9 +1,9 @@
 .card:hover {
     background-color: #7855C3;
     border: #7855C3;
-    color: #fff;
+    color: #fff !important;
 }
-.btn-hover:hover{
+.card:hover .btn-hover{
     color: #fff !important;
 }
 
