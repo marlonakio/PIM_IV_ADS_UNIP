@@ -1,3 +1,8 @@
+GET por empresa e por mês
+ROTA: localhost:3333/historico/empresa/:empresaId/:mes
+
+==============================================================
+
 GET por empresa para historico de funcionario
 ROTA: localhost:3333/historico/empresa/1
 

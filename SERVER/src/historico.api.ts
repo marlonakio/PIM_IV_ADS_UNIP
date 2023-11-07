@@ -4,6 +4,45 @@ import { PrismaClient } from '@prisma/client';
 const apiHistoricoRoutes: FastifyPluginCallback = (fastify, options, done) => {
   const prisma = new PrismaClient();
 
+  //GET por empresa e por mês
+  fastify.get('/historico/empresa/:empresaId/:mes', async (request, reply) => {
+    try {
+      const { empresaId, mes } = request.params as { empresaId: string; mes: string };
+    
+      const mesNum = parseInt(mes);
+      if (isNaN(mesNum) || mesNum < 1 || mesNum > 12) {
+        reply.status(400).send({ error: 'Mês inválido' });
+        return;
+      }
+    
+      const ano = new Date().getFullYear(); 
+      const startDate = new Date(ano, mesNum - 1, 1);
+      const endDate = new Date(ano, mesNum, 0);
+    
+      const pagamentos = await prisma.pagamento.findMany({
+        where: {
+          data: {
+            gte: startDate,
+            lte: endDate,
+          },
+          funcionario: {
+            empresa_id: parseInt(empresaId),
+          },
+        },
+        include: {
+          funcionario: true,
+          empresa: true,
+        },
+      });
+    
+      reply.send(pagamentos);
+    } catch (error) {
+      console.error('Erro ao consultar pagamentos por empresa e mês:', error);
+      reply.status(500).send({ error: 'Erro ao consultar pagamentos por empresa e mês' });
+    }
+  });
+
+
   //GET por empresa para historico de funcionario
   fastify.get('/historico/empresa/:empresaId', async (request, reply) => {
     try {
