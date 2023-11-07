@@ -18,6 +18,10 @@
         rel="stylesheet">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <!-- Custom styles for this template-->
+    <link href="../../vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <link href="../../css/sb-admin-2.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../../css/colorStartRh.css">
     <link rel="stylesheet" href="../../css/index.css">
@@ -133,16 +137,197 @@
                 </nav>
                 <!-- End of Topbar -->
 
-                <div style="height: 100vh;" class="mt-5">
-                      <!-- Begin Page Content -->
-                <div class="container">
-
-                    
-
-
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+                
+                    <!-- Page Heading -->
+                    <h1 class="h3 mb-2 text-gray-800">Tables</h1>
+                    <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below.
+                        For more information about DataTables, please visit the <a target="_blank"
+                            href="https://datatables.net">official DataTables documentation</a>.</p>
+                
+                    <!-- DataTales Example -->
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3 d-flex align-items-center justify-content-between">
+                            <h4 class="m-0 font-weight-bold text-primary">Histórico de Pagamentos</h4>
+                            <div class="float-right">
+                                <button class="btn btn-warning" id="visualizar_pagamento" data-toggle="modal"
+                                    data-target="#visualizar_pagamento">
+                                    <i class="fa fa-eye"></i>
+                                </button>
+                                <button class="btn btn-info" id="pesquisar" data-toggle="modal" data-target="#searchFuncionarioModal">
+                                    <i class="fas fa-reply"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table id="funcionarioTable" class="table table-bordered" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th></th>
+                                            <th>ID</th>
+                                            <th>Nome</th>
+                                            <th>CPF</th>
+                                            <th>Empresa</th>
+                                            <th>Horas Trabalhada</th>
+                                            <th>Salario</th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                
+                </div>
+                <!-- /.container-fluid -->
+                
+                <!-- Modal para selecionar empresa -->
+                <div class="modal fade" id="selectEmpresaModal" tabindex="-1" role="dialog" aria-labelledby="selectEmpresaModal"
+                    aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="selectEmpresaModalLabel">Selecione uma empresa Empresa</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <label for="selectEmpresa">Nome da Empresa</label>
+                                    <select class="form-control" id="selectEmpresa">
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <label for="selectMes">Selecione um mês</label>
+                                    <select class="form-control" id="selectMes">
+                                        <option value="12">Dezembro</option>
+                                        <option value="11">Novembro</option>
+                                        <option value="10">Outubro</option>
+                                        <option value="09">Setembro</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                                <button type="button" class="btn btn-primary" id="selecionarEmpresa">Selecionar</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 
-
+                <!-- Modal para visualizar pagamento -->
+                <div class="modal fade" id="viewPagamentoModal" tabindex="-1" role="dialog" aria-labelledby="addEmpresaModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Adicionar Empresa</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"
+                                    data-target="#viewPagamentoModal" id="fecharModal">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form id="viewPagamento">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <div class="form-group">
+                                                <label for="viewNome">Nome completo</label>
+                                                <input type="text" class="form-control" id="viewNome" disabled>
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="form-group">
+                                                <label for="viewCPF">CPF</label>
+                                                <input type="text" class="form-control" id="viewCPF" disabled>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <div class="form-group">
+                                                <label for="viewEmpresa">Empresa</label>
+                                                <input type="text" class="form-control" id="viewEmpresa" disabled>
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="form-group">
+                                                <label for="viewCNPJ">CNPJ</label>
+                                                <input type="text" class="form-control" id="viewCNPJ" disabled>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <div class="form-group">
+                                                <label for="viewData">Data</label>
+                                                <input type="text" class="form-control" id="viewData" disabled>
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="form-group">
+                                                <label for="viewCargo">Cargo</label>
+                                                <input type="text" class="form-control" id="viewCargo" disabled>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <div class="form-group">
+                                                <label for="viewSalario_Bruto">Salario bruto</label>
+                                                <input type="text" class="form-control" id="viewSalario_Bruto" disabled>
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="form-group">
+                                                <label for="viewSalario_Liquido">Salario Liquido</label>
+                                                <input type="text" class="form-control" id="viewSalario_Liquido" disabled>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <div class="form-group">
+                                                <label for="viewDesconto_INSS">Desconto INSS</label>
+                                                <input type="text" class="form-control" id="viewDesconto_INSS" disabled>
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="form-group">
+                                                <label for="viewHoras_Trabalhadas">Horas trabalhadas</label>
+                                                <input type="text" class="form-control" id="viewHoras_Trabalhadas" disabled>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <div class="form-group">
+                                                <label for="viewDesconto_IR">Desconto IR</label>
+                                                <input type="text" class="form-control" id="viewDesconto_IR" disabled>
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="form-group">
+                                                <label for="viewValor_Hora">Valor Hora</label>
+                                                <input type="text" class="form-control" id="viewValor_Hora" disabled>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal" aria-label="Fechar"
+                                    data-target="#viewPagamentoModal" id="fechar_modal">Fechar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                
                 </div>
 
                 
@@ -168,9 +353,15 @@
 
     <!-- Custom scripts for all pages-->
     <script src="../../js/sb-admin-2.min.js"></script>
+    <script src="../../js/historico_pagamento.script.js"></script>
+
 
     <!-- Page level plugins -->
     <script src="../../vendor/chart.js/Chart.min.js"></script>
+    <script src="../../vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="../../vendor/datatables/dataTables.bootstrap4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.6/jquery.inputmask.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 
     <!-- Page level custom scripts -->
     <script src="../../js/demo/chart-area-demo.js"></script>
