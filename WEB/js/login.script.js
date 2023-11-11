@@ -47,19 +47,18 @@ document.addEventListener("DOMContentLoaded", function(){
       body: JSON.stringify(data)
     })
     .then(response => response.json())
-    .then(data => {
-      console.log('Resposta do servidor:', data);
+    .then(data => { 
       if(data.autenticado === true){
+        localStorage.setItem("id_func", data.id_func);
+        localStorage.setItem("id_empresa", data.id_empresa);
         toastr.success("Login realizado!");
         if(data.rh === true){
           setTimeout(function () {
-            console.log('logado');
             window.location.href = "./rh/home/";
           }, 3000)
         }
         if(data.rh === false){
           setTimeout(function () {
-            console.log('logado');
             window.location.href = "./funcionario/home/";
           }, 3000)
         }

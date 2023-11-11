@@ -80,11 +80,13 @@ model Historico {
 }
 
 model Usuario {
-  id    Int     @id @default(autoincrement())
-  nome  String
-  email String  @unique
-  senha String
-  rh    Boolean
+  id         Int     @id @default(autoincrement())
+  nome       String
+  email      String  @unique
+  senha      String
+  rh         Boolean
+  id_func    Int?
+  id_empresa Int?
 
   @@map("usuarios")
 }

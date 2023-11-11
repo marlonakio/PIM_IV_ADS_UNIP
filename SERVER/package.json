@@ -11,14 +11,14 @@
   "license": "ISC",
   "dependencies": {
     "@fastify/cors": "^8.2.1",
-    "@prisma/client": "^4.11.0",
+    "@prisma/client": "^5.5.2",
     "bcrypt": "^5.1.1",
     "fastify": "^4.15.0"
   },
   "devDependencies": {
     "@mermaid-js/mermaid-cli": "^10.0.2",
     "@types/bcrypt": "^5.0.0",
-    "prisma": "^5.4.2",
+    "prisma": "^5.5.2",
     "prisma-erd-generator": "^1.4.2",
     "tsx": "^3.12.6",
     "typescript": "^5.0.2"

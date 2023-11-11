@@ -37,6 +37,12 @@ const apiUsuariosRoutes: FastifyPluginCallback = (fastify, options, done) => {
 
     const usuario = await prisma.usuario.findUnique({
       where: { email },
+      select: {
+        id_func: true,
+        id_empresa: true,
+        senha: true,
+        rh: true
+      },
     });
 
     if (!usuario) {
@@ -47,10 +53,9 @@ const apiUsuariosRoutes: FastifyPluginCallback = (fastify, options, done) => {
     const senhaCorreta = await bcrypt.compare(senha, usuario.senha);
 
     if (senhaCorreta) {
-      // Verifique se o usuário pertence ao RH
       const rh = usuario.rh === true;
 
-      reply.send({ autenticado: true, rh });
+      reply.send({ autenticado: true, rh, id_func: usuario.id_func, id_empresa: usuario.id_empresa });
     } else {
       reply.send({ autenticado: false, rh: false });
     }
