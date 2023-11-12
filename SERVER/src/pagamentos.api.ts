@@ -1,72 +1,76 @@
 import { FastifyPluginCallback } from 'fastify';
 import { PrismaClient } from '@prisma/client';
 import { PagamentoType } from './types'; 
+import { parse } from 'date-fns';
 
-const apiPagamentosRoutes: FastifyPluginCallback = (fastify, options, done) => {
-  const prisma = new PrismaClient();
+  const apiPagamentosRoutes: FastifyPluginCallback = (fastify, options, done) => {
+    const prisma = new PrismaClient();
 
-  fastify.post('/pagamentos', async (request, reply) => {
-  try {
-    const payments = request.body as PagamentoType[];
-    const createdPayments = [];
+    fastify.post('/pagamentos', async (request, reply) => {
+    try {
+      const payments = request.body as PagamentoType[];
+      const createdPayments = [];
 
-    for (const payment of payments) {
-      const { funcionario_id, hora_trabalhada } = payment;
+      for (const payment of payments) {
+        const { funcionario_id, hora_trabalhada, data } = payment;
 
-      const funcionario = await prisma.funcionario.findUnique({
-        where: {
-          id: funcionario_id,
-        },
-      });
+        const funcionario = await prisma.funcionario.findUnique({
+          where: {
+            id: funcionario_id,
+          },
+        });
 
-      if (!funcionario) {
-        reply.status(404).send({ error: `Funcionário com ID ${funcionario_id} não encontrado` });
-        return;
+        if (!funcionario) {
+          reply.status(404).send({ error: `Funcionário com ID ${funcionario_id} não encontrado` });
+          return;
+        }
+
+        const dataFormatada = parse(data, 'dd/MM/yyyy', new Date());
+
+        const empresa_id = funcionario.empresa_id;
+
+        let salario_bruto = hora_trabalhada * funcionario.valor_hora;
+        salario_bruto = Number(salario_bruto.toFixed(2));
+
+        let desc_inss = salario_bruto * 0.09;
+        desc_inss = Number(desc_inss.toFixed(2));
+
+        let desc_ir = salario_bruto * 0.075;
+        desc_ir = Number(desc_ir.toFixed(2));
+
+        let salario_liqui = salario_bruto - (desc_inss + desc_ir);
+        salario_liqui = Number(salario_liqui.toFixed(2));
+
+        const pagamento = await prisma.pagamento.create({
+          data: {
+            funcionario_id,
+            empresa_id,
+            hora_trabalhada,
+            data: dataFormatada,
+            salario_bruto,
+            valor_hora: funcionario.valor_hora,
+            desc_inss,
+            desc_ir,
+            salario_liqui,
+          },
+        });
+
+        await prisma.historico.create({
+          data: {
+            pagamento_id: pagamento.id,
+            funcionario_id: funcionario_id,
+          },
+        });
+
+        createdPayments.push(pagamento);
       }
 
-      const empresa_id = funcionario.empresa_id;
-
-      let salario_bruto = hora_trabalhada * funcionario.valor_hora;
-      salario_bruto = Number(salario_bruto.toFixed(2));
-
-      let desc_inss = salario_bruto * 0.09;
-      desc_inss = Number(desc_inss.toFixed(2));
-
-      let desc_ir = salario_bruto * 0.075;
-      desc_ir = Number(desc_ir.toFixed(2));
-
-      let salario_liqui = salario_bruto - (desc_inss + desc_ir);
-      salario_liqui = Number(salario_liqui.toFixed(2));
-
-      const pagamento = await prisma.pagamento.create({
-        data: {
-          funcionario_id,
-          empresa_id,
-          hora_trabalhada,
-          salario_bruto,
-          valor_hora: funcionario.valor_hora,
-          desc_inss,
-          desc_ir,
-          salario_liqui,
-        },
-      });
-
-      await prisma.historico.create({
-        data: {
-          pagamento_id: pagamento.id,
-          funcionario_id: funcionario_id,
-        },
-      });
-
-      createdPayments.push(pagamento);
+      reply.status(201).send(createdPayments);
+    } catch (error) {
+      console.error('Erro ao criar pagamento:', error);
+      reply.status(500).send({ error: 'Erro ao criar pagamento' });
     }
-
-    reply.status(201).send(createdPayments);
-  } catch (error) {
-    console.error('Erro ao criar pagamento:', error);
-    reply.status(500).send({ error: 'Erro ao criar pagamento' });
-  }
-});
+  });
 
 
   // PATCH em pagamentos/:id

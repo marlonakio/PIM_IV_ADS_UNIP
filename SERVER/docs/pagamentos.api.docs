@@ -4,15 +4,18 @@ JSON esperado:
 [
   {
     "funcionario_id": 13,
-    "hora_trabalhada": 220
+    "hora_trabalhada": 220,
+		"data" "dd/mm/aaaa"
   },
   {
     "funcionario_id": 14,
-    "hora_trabalhada": 225
+    "hora_trabalhada": 225,
+		"data" "dd/mm/aaaa"
   },
   {
     "funcionario_id": 15,
-    "hora_trabalhada": 245
+    "hora_trabalhada": 245,
+		"data" "dd/mm/aaaa"
   }
 ]
 

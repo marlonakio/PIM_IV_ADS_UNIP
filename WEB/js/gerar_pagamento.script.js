@@ -16,6 +16,17 @@ toastr.options = {
 
 let selectedEmpresaId = $('#selectEmpresa').val()
 
+var today = new Date();
+var nextMonth = new Date(today);
+if (nextMonth.getMonth() === 11) {
+  nextMonth.setFullYear(today.getFullYear() + 1);
+  nextMonth.setMonth(0);
+} else {
+  nextMonth.setMonth(today.getMonth() + 1);
+}
+nextMonth.setDate(5);
+var formattedDate = nextMonth.getDate() + '/' + (nextMonth.getMonth() + 1) + '/' + nextMonth.getFullYear();
+
 $(document).ready(function(){
   $("#selectEmpresaModal").modal("show");
 
@@ -67,14 +78,25 @@ $(document).ready(function(){
             {   
                 "data": "funcionario_hora_prevista",
                 "render": function (data, type, row) {
-                  // return data ;
                   return '<input id="ht_'+row.funcionario_id+'" style="width:60px; border: none;" value="' + data + '">';
                 },
                 "orderable": false
+            },
+            {
+              "data": null,
+              "render": function (data, type, row) {
+                return '<input class="datepicker" id="data_'+row.funcionario_id+'" data-date-format="dd/mm/yyyy" value="' + formattedDate + '">';
+              }
             }
         ],
-        "order": [[0, "desc"]],
+        "order": [[0, "desc"]], 
     }); 
+    
+    table.on('init.dt', function () {
+      startSelectDatePicker();
+      selectedDate();
+    });
+
     
     }
     getEmpresas();
@@ -89,11 +111,14 @@ $(document).ready(function(){
         var data = this.data();
         var funcionarioId = data.funcionario_id;
         var htInput = $('#ht_' + funcionarioId);
+        var dateInput = $('#data_' + funcionarioId);
         var horaTrabalhada = htInput.val();
+        var dataPagamento = dateInput.val();
 
         dataPost.push({
             "funcionario_id": funcionarioId,
-            "hora_trabalhada": parseFloat(horaTrabalhada)
+            "hora_trabalhada": parseFloat(horaTrabalhada),
+            "data": dataPagamento
         });
     });
 
@@ -111,7 +136,10 @@ $(document).ready(function(){
         }, 3000)
       },
       error: function(xhr, status, error) {
-        toastr.error("Não gerar o pagamento!");
+        toastr.error("Não foi possível gerar o pagamento!");
+        setTimeout(function () {
+          window.location.reload();
+        }, 3000)
       }
     });
   });
@@ -121,4 +149,25 @@ $(document).ready(function(){
   $("#pesquisar").on("click", function() {
     window.location.reload();
   });
+
 });
+
+function startSelectDatePicker(){
+  $('.datepicker').datepicker({
+    format: 'dd/mm/yyyy',
+    autoclose: true,
+    language: 'pt-BR'
+  });
+} 
+
+function selectedDate() {
+  var changeDateEnabled = true;
+  $('.datepicker').on('changeDate', function (e) {
+    if (changeDateEnabled) {
+      changeDateEnabled = false;
+      var selectedDate = e.date;
+      $('.datepicker').not(this).datepicker('setDate', selectedDate);
+      changeDateEnabled = true;
+    }
+  });
+}
