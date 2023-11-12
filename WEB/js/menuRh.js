@@ -1,24 +1,24 @@
 function GFuncionarios(){
-    location.href = "../gestaoFuncionarios/"
+    location.href = "../gestaoFuncionarios/index.html"
 }
 
 function GEmpresas(){
-    location.href = "../gestaoEmpresa/"
+    location.href = "../gestaoEmpresa/index.html"
 }
 
 function APagamento(){
-    location.href = "../agendarPagamento/"
+    location.href = "../agendarPagamento/index.html"
 }
 
 function HPagamento(){
-    location.href = "../historicoPagamento/"
+    location.href = "../historicoPagamento/index.html"
 }
 
 
 function desemvolvimento(){
-    location.href = "../emDesenvolvimento/"
+    location.href = "../emDesenvolvimento/index.html"
 }
 
 function homeRh(){
-    location.href = "../homeRh/"
+    location.href = "../homeRh/index.html"
 }

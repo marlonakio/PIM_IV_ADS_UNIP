@@ -15,6 +15,13 @@
     cursor: pointer;
 }
 
+.sidebar{
+    cursor: pointer!important;
+}
+
+.img-logo{
+    cursor: pointer;
+}
 
 @media screen and (max-width: 768px){
     .sidebar {
