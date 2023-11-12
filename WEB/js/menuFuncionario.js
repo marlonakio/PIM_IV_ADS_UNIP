@@ -10,6 +10,10 @@ function historicoHolerite(){
     location.href = "../historicoHolerite/"
 }
 
+function historicoSalarial(){
+    location.href = "../historicoSalarial/"
+}
+
 function desemvolvimento(){
     location.href = "../emDesenvolvimento/"
 }

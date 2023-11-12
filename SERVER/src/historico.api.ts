@@ -72,6 +72,10 @@ const apiHistoricoRoutes: FastifyPluginCallback = (fastify, options, done) => {
         where: {
           funcionario_id: parseInt(funcionarioId),
         },
+        include: {
+          funcionario: true,
+          empresa: true,
+        },
       });
 
       reply.send(historicos);
@@ -80,6 +84,61 @@ const apiHistoricoRoutes: FastifyPluginCallback = (fastify, options, done) => {
       reply.status(500).send({ error: 'Erro ao buscar histórico por funcionário' });
     }
   });
+
+    //GET por funcionario para chart
+  fastify.get('/historico/funcionario/:funcionarioId/chart', async (request, reply) => {
+    try {
+      const { funcionarioId } = request.params as { funcionarioId: string };
+
+      const historico = await prisma.pagamento.findMany({
+        where: {
+          funcionario_id: parseInt(funcionarioId),
+        },
+        orderBy: {
+        data: 'asc',
+      },
+      });
+
+      const data = historico.map(item => ({
+        salario_liqui: item.salario_liqui,
+        data: item.data,
+        desc_inss: item.desc_inss,
+        desc_ir: item.desc_ir
+      }));
+
+      reply.send(data);
+    } catch (error) {
+      console.error('Erro ao buscar histórico por funcionário:', error);
+      reply.status(500).send({ error: 'Erro ao buscar histórico por funcionário' });
+    }
+  });
+
+  //GET proximo pagamento
+  fastify.get('/historico/funcionario/:funcionarioId/ultimo', async (request, reply) => {
+  try {
+    const { funcionarioId } = request.params as { funcionarioId: string };
+
+    const historicoMaisRecente = await prisma.pagamento.findFirst({
+      where: {
+        funcionario_id: parseInt(funcionarioId),
+      },
+      orderBy: {
+        data: 'desc', 
+      },
+      include: {
+        funcionario: true,
+        empresa: true,
+      },
+    });
+
+    reply.send(historicoMaisRecente ? [historicoMaisRecente] : []);
+  } catch (error) {
+    console.error('Erro ao buscar histórico por funcionário:', error);
+    reply.status(500).send({ error: 'Erro ao buscar histórico por funcionário' });
+  }
+});
+
+
 
   //GET por mes
   fastify.get('/historico/pagamentos/:mes', async (request, reply) => {

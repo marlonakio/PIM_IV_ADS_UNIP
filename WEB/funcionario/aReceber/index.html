@@ -12,6 +12,9 @@
     <title>StartRH</title>
 
     <!-- Custom fonts for this template-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <link href="../../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
@@ -56,7 +59,7 @@
                     <span>Histórico Holerite</span></a>
             </li>
 
-            <li onclick="desemvolvimento()" class="nav-item">
+            <li onclick="historicoSalarial()" class="nav-item">
                 <a class="nav-link">
                     <i class="fas fa-fw bi bi-wallet-fill"></i>
                     <span>Histórico Salarial</span></a>
@@ -133,22 +136,107 @@
                 </nav>
                 <!-- End of Topbar -->
 
-                <div style="height: 100vh;" class="mt-5">
-                      <!-- Begin Page Content -->
-                <div class="container">
-
-                    
-
-                    <div class="row">
-
-                        
-                        
-                    </div>
-
-                </div>
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
                 
-
+                    <!-- Page Heading -->
+                    <h1 class="h3 mb-2 text-gray-800">Tables</h1>
+                    <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below.
+                        For more information about DataTables, please visit the <a target="_blank"
+                            href="https://datatables.net">official DataTables documentation</a>.</p>
+                
+                    <!-- Visualizar pagamento -->
+                    <div class="">
+                        <form id="viewPagamento">
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label for="viewNome">Nome completo</label>
+                                        <input type="text" class="form-control" id="viewNome" disabled>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label for="viewCPF">CPF</label>
+                                        <input type="text" class="form-control" id="viewCPF" disabled>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label for="viewEmpresa">Empresa</label>
+                                        <input type="text" class="form-control" id="viewEmpresa" disabled>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label for="viewCNPJ">CNPJ</label>
+                                        <input type="text" class="form-control" id="viewCNPJ" disabled>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label for="viewData">Data</label>
+                                        <input type="text" class="form-control" id="viewData" disabled>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label for="viewCargo">Cargo</label>
+                                        <input type="text" class="form-control" id="viewCargo" disabled>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label for="viewSalario_Bruto">Salario bruto</label>
+                                        <input type="text" class="form-control" id="viewSalario_Bruto" disabled>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label for="viewSalario_Liquido">Salario Liquido</label>
+                                        <input type="text" class="form-control" id="viewSalario_Liquido" disabled>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label for="viewDesconto_INSS">Desconto INSS</label>
+                                        <input type="text" class="form-control" id="viewDesconto_INSS" disabled>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label for="viewHoras_Trabalhadas">Horas trabalhadas</label>
+                                        <input type="text" class="form-control" id="viewHoras_Trabalhadas" disabled>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label for="viewDesconto_IR">Desconto IR</label>
+                                        <input type="text" class="form-control" id="viewDesconto_IR" disabled>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label for="viewValor_Hora">Valor Hora</label>
+                                        <input type="text" class="form-control" id="viewValor_Hora" disabled>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                
                 </div>
+                <!-- /.container-fluid -->
 
                 
 
@@ -176,11 +264,12 @@
 
     <!-- Page level plugins -->
     <script src="../../vendor/chart.js/Chart.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.6/jquery.inputmask.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 
     <!-- Page level custom scripts -->
-    <script src="../../js/demo/chart-area-demo.js"></script>
-    <script src="../../js/demo/chart-pie-demo.js"></script>
-    <script src="../../js/homeFuncionario.js"></script>
+    <script src="../../js/aReceber.script.js"></script>
+    <script src="../../js/menuFuncionario.js"></script>
 
 </body>
 </html>
