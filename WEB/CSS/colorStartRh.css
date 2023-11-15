@@ -1,3 +1,24 @@
+Works on Firefox
+* {
+    scrollbar-width: thin;
+    scrollbar-color: #7855C3 #171322;
+  }
+  
+  /* Works on Chrome, Edge, and Safari */
+  *::-webkit-scrollbar {
+    width: 12px;
+  }
+  
+  *::-webkit-scrollbar-track {
+    background: #171322;
+  }
+  
+  *::-webkit-scrollbar-thumb {
+    background-color: #7855C3;
+    border-radius: 20px;
+    border: 3px solid #171322;
+  }
+
 .text-color{
     color: #fff !important;
 }
@@ -6,8 +27,12 @@
     color: #7855C3 !important;
 }
 
-.bk-pupple-light{
+.bk-pupple-light, .btn-primary{
     background-color: #7855C3 !important;
+}
+
+.btn-primary:hover{
+    background-color: #5c3ca3;
 }
 
 .bk-pupple-dark{
@@ -28,4 +53,48 @@
 
 .topbar #sidebarToggleTop:hover {
     background-color: #5c3ca3 !important;
+}
+
+.tableRH{
+    background-color: #282433 !important;
+    color: #fff !important;
+    cursor: default !important;
+    border: 1px solid #fff !important;
+}
+
+.tableRH:hover{
+    border: 1px solid #fff !important;
+}
+
+div.dataTables_wrapper div.dataTables_length select{
+    background-color: #5c3ca3;
+    color: #fff;
+}
+
+div.dataTables_wrapper div.dataTables_filter input{
+    background-color: #5c3ca3;
+    color: #fff;
+}
+
+.modal-body, .modal-header, .modal-footer, option{
+    background-color: #282433 !important;
+    color: #fff !important;
+    cursor: default !important;
+    border: 0;
+}
+
+.close{
+    color: #5c3ca3 !important;
+}
+
+.form-control{
+    background-color: #171322;
+}
+
+#toast-container>.toast-error{
+    background-color: red !important;
+}
+
+#toast-container>.toast-success{
+    background-color: green !important;
 }
