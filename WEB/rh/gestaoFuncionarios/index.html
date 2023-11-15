@@ -43,7 +43,7 @@
 
             <!-- Heading -->
             <div class="sidebar-heading">
-                <img onclick="homeRh()" src="../../img/logo.png" alt="" width="100px" height="100px" >
+                <img class="img-logo" onclick="homeRh()" src="../../img/logo.png" alt="" width="100px" height="100px" >
             </div>
 
             
@@ -147,9 +147,9 @@
                                             href="https://datatables.net">official DataTables documentation</a>.</p>
                                 
                                     <!-- DataTales Example -->
-                                    <div class="card shadow mb-4">
-                                        <div class="card-header py-3 d-flex align-items-center justify-content-between">
-                                            <h4 class="m-0 font-weight-bold text-primary">Funcionários</h4>
+                                    <div class="card tableRH shadow mb-4">
+                                        <div class="card-header tableRH py-3 d-flex align-items-center justify-content-between" style="border: 0px;">
+                                            <h4 class="m-0 font-weight-bold text-color text-primary">Funcionários</h4>
                                             <div class="float-right">
                                                 <button class="btn btn-success" id="inserir" data-toggle="modal" data-target="#addFuncionarioModal">
                                                     <i class="fas fa-plus"></i>
@@ -167,7 +167,7 @@
                                         </div>
                                         <div class="card-body">
                                             <div class="table-responsive">
-                                                <table id="funcionarioTable" class="table table-bordered" width="100%" cellspacing="0">
+                                                <table id="funcionarioTable" class="table text-color table-bordered" width="100%" cellspacing="0">
                                                     <thead>
                                                         <tr>
                                                             <th></th>
@@ -296,7 +296,7 @@
                                     </div>
                                 </div>
                                 
-                                
+                                 
                                 <!-- Modal para selecionar empresa -->
                                 <div class="modal fade" id="selectEmpresaModal" tabindex="-1" role="dialog" aria-labelledby="selectEmpresaModal"
                                     aria-hidden="true">
