@@ -21,6 +21,7 @@ app.register(apiUsuariosRoutes);
 
 app.listen({
   port: 3333,
+  host: '0.0.0.0'
 }).then(() => {
   console.log('Server rodando na porta:3333.');
   console.log('Rota: http://localhost:3333');
