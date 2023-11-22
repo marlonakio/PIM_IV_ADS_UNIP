@@ -12,7 +12,7 @@
     <title>StartRH</title>
 
     <!-- Custom fonts for this template-->
-    <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="../../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
@@ -59,9 +59,9 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">FUNCIONARIO</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">RH</span>
                                 <img class="img-profile rounded-circle"
-                                    src="../..//img/undraw_profile.svg">
+                                    src="../../img/undraw_profile.svg">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -79,7 +79,7 @@
                                     Activity Log
                                 </a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#" data-toggle="modal" id="logout">
+                                <a class="dropdown-item" href="../" data-toggle="modal" id="logout">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Logout
                                 </a>
@@ -104,14 +104,14 @@
 
                         <!-- Earnings (Monthly) Card Example -->
                         <div class="col-xl-4 col-md-6 mb-4 ">
-                            <div onclick="AReceber()" class="btn-boder card border-left-pupple-light shadow h-100 py-2">
+                            <div onclick="GFuncionarios()" class="btn-boder card border-left-pupple-light shadow h-100 py-2">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
-                                            <div class=" h5 mb-0 font-weight-bold color-pupple-light btn-hover">A Receber</div>
+                                            <div class=" h5 mb-0 font-weight-bold color-pupple-light btn-hover">Gestão de Funcionarios</div>
                                         </div>
                                         <div class="col-auto">
-                                            <i class="fas bi bi-currency-dollar bi-Heading fa-2x text-gray-300" style="font-size: 30px;"></i>
+                                            <i class="fas bi bi-person-fill-gear fa-2x text-gray-300"></i>
                                         </div>
                                     </div>
                                 </div>
@@ -120,14 +120,14 @@
 
                         <!-- Earnings (Annual) Card Example -->
                         <div class="col-xl-4 col-md-6 mb-4">
-                            <div onclick="historicoHolerite()" class="btn-boder card border-left-pupple-light shadow h-100 py-2">
+                            <div onclick="GEmpresas()" class="btn-boder card border-left-pupple-light shadow h-100 py-2">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
-                                            <div class="h5 mb-0 font-weight-bold color-pupple-light btn-hover">Histórico Holerite</div>
+                                            <div class="h5 mb-0 font-weight-bold color-pupple-light btn-hover">Gestão de Empresas</div>
                                         </div>
                                         <div class="col-auto">
-                                            <i class="fas bi-calendar-minus fa-calendar fa-2x text-gray-300" style="font-size: 30px;"></i>
+                                            <i class="fas bi bi-building-gear fa-2x text-gray-300"></i>
                                         </div>
                                     </div>
                                 </div>
@@ -136,18 +136,34 @@
 
                         <!-- Tasks Card Example -->
                         <div class="col-xl-4 col-md-6 mb-4">
-                            <div onclick="historicoSalarial()" class="btn-boder card border-left-pupple-light shadow h-100 py-2">
+                            <div onclick="APagamento()" class="btn-boder card border-left-pupple-light shadow h-100 py-2">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="row no-gutters align-items-center">
                                                 <div class="col-auto">
-                                                    <div class="h5 mb-0 mr-3 font-weight-bold color-pupple-light btn-hover">Histórico Salarial </div>
+                                                    <div class="h5 mb-0 mr-3 font-weight-bold color-pupple-light btn-hover">Agendar Pagamento</div>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-auto">
-                                            <i class="fas bi bi-wallet-fill fa-2x text-gray-300" style="font-size: 30px;"></i>
+                                            <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Pending Requests Card Example -->
+                        <div class="col-xl-4 col-md-6 mb-4">
+                            <div onclick="HPagamento()" class="btn-boder card border-left-pupple-light shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="h5 mb-0 font-weight-bold color-pupple-light btn-hover">Histórico de Pagamento</div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
                                         </div>
                                     </div>
                                 </div>
@@ -160,10 +176,10 @@
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
-                                            <div class="h5 mb-0 font-weight-bold color-pupple-light btn-hover">Ponto Eletrônico</div>
+                                            <div class="h5 mb-0 font-weight-bold color-pupple-light btn-hover">Gestão de ponto</div>
                                         </div>
                                         <div class="col-auto">
-                                            <i class="fas bi bi-archive fa-2x text-gray-300" style="font-size: 30px;"></i>
+                                            <i class="fas bi-archive fa-2x text-gray-300"></i>
                                         </div>
                                     </div>
                                 </div>
@@ -176,26 +192,10 @@
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
-                                            <div class="h5 mb-0 font-weight-bold color-pupple-light btn-hover">Férias</div>
+                                            <div class="h5 mb-0 font-weight-bold color-pupple-light btn-hover">Gestão de férias</div>
                                         </div>
                                         <div class="col-auto">
-                                            <i class="fas bi bi-calendar-event fa-2x text-gray-300" style="font-size: 30px;"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Pending Requests Card Example -->
-                        <div class="col-xl-4 col-md-6 mb-4">
-                            <div onclick="desemvolvimento()" class="btn-boder card border-left-pupple-light shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="h5 mb-0 font-weight-bold color-pupple-light btn-hover">Documentos</div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas bi bi-file-earmark-text fa-2x text-gray-300" style="font-size: 30px;"></i>
+                                            <i class="fas bi-calendar-event fa-2x text-gray-300"></i>
                                         </div>
                                     </div>
                                 </div>
@@ -235,7 +235,7 @@
     <!-- Page level custom scripts -->
     <script src="../../js/demo/chart-area-demo.js"></script>
     <script src="../../js/demo/chart-pie-demo.js"></script>
-    <script src="../../js/menuFuncionario.script.js"></script>
+    <script src="../../js/menuRh.script.js"></script>
 
 </body>
 

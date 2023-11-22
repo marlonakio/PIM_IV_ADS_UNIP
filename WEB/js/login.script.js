@@ -1,3 +1,24 @@
+history.pushState(null, null, document.URL);
+window.addEventListener('popstate', function () {
+    history.pushState(null, null, document.URL);
+});
+
+toastr.options = {
+  "closeButton": true,
+  "progressBar": true,
+  "positionClass": "toast-top-center",
+  "preventDuplicates": false,
+  "onclick": null,
+  "showDuration": "300",
+  "hideDuration": "1000",
+  "timeOut": "3000",
+  "extendedTimeOut": "1000",
+  "showEasing": "swing",
+  "hideEasing": "linear",
+  "showMethod": "fadeIn",
+  "hideMethod": "fadeOut"
+};
+
 function eye(){
  let inputPass = document.getElementById("senha")
  let btnShowPass = document.getElementById("eye")
@@ -13,32 +34,22 @@ function eye(){
 }
 
 document.addEventListener("DOMContentLoaded", function(){
+  
   const entrarButton = document.querySelector('.btn.btn-outline-primary');
 
   entrarButton.addEventListener("click", function () {
     const email = $('#Email').val();
     const senha = $('#senha').val();
 
+    if (email == '' || senha == '') {
+      return toastr.error("Login incorreto!");
+    }
+
     const data = {
       email: email,
       senha: senha
     };
 
-    toastr.options = {
-        "closeButton": true,
-        "progressBar": true,
-        "positionClass": "toast-top-center",
-        "preventDuplicates": false,
-        "onclick": null,
-        "showDuration": "300",
-        "hideDuration": "1000",
-        "timeOut": "3000",
-        "extendedTimeOut": "1000",
-        "showEasing": "swing",
-        "hideEasing": "linear",
-        "showMethod": "fadeIn",
-        "hideMethod": "fadeOut"
-    };
     fetch('http://localhost:3333/login', {
       method: 'POST',
       headers: {
@@ -71,5 +82,11 @@ document.addEventListener("DOMContentLoaded", function(){
         console.error('Erro na solicitação:', error);
         toastr.warning("Servidor offline");
     });
+  });
+
+  document.addEventListener("keydown", function(event) {
+    if (event.key === "Enter") {
+      entrarButton.click();
+    }
   });
 });

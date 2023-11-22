@@ -17,3 +17,11 @@ function historicoSalarial(){
 function desemvolvimento(){
     location.href = "../emDesenvolvimento/"
 }
+
+document.addEventListener("DOMContentLoaded", function(){
+  const sairButton = document.getElementById('logout');
+  sairButton.addEventListener("click", function () {
+      
+    window.location.href = window.location.protocol + '//' + window.location.host + '/PIM/WEB/'
+  });
+}); 
