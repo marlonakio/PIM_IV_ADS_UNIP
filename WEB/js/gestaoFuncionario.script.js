@@ -114,9 +114,7 @@ $(document).ready(function(){
           table.$('tr.selected').removeClass('selected');
           $(this).addClass('selected');
           selectedRowData = table.row(this).data();
-          // console.log(selectedRowData);
           $("#editar").on("click", function() {
-          //  console.log(selectedRowData)
             $("#editNome").val(selectedRowData.nome);
             $("#editCpf").val(selectedRowData.cpf);
             $("#editEmail").val(selectedRowData.email);
@@ -124,6 +122,8 @@ $(document).ready(function(){
             $("#editCargo").val(selectedRowData.cargo);
             $("#editHoraPrevista").val(selectedRowData.hora_prevista);
             $("#editSalario").val(selectedRowData.salario);
+            $("#editCpf").inputmask("999.999.999-99");
+            $("#editTelefone").inputmask("(99) 99999-9999");
             $("#editFuncionarioModal").modal("show");
           });
         }
@@ -183,7 +183,6 @@ $(document).ready(function(){
         "hora_prevista": horasPrevistas,
         "salario": salario
     };
-    // console.log(FuncionarioData);
     $.ajax({
       type: "POST",
       url: "http://localhost:3333/funcionarios",
@@ -204,6 +203,9 @@ $(document).ready(function(){
 
 
   // EDITAR EMRPESA
+  $("#editCpf").mask("000.000.000-00");
+  $("#editTelefone").mask("(00) 00000-0000");
+
   $("#saveEdit").on("click", function() {
     var id = $("input[name='empresaRadio']:checked").val();
     var nome = $("#editNome").val();

@@ -63,9 +63,7 @@ $(function()  {
             table.$('tr.selected').removeClass('selected');
             $(this).addClass('selected');
             selectedRowData = table.row(this).data();
-            // console.log(selectedRowData);
             $("#editar").on("click", function() {
-            //  console.log(selectedRowData)
               $("#editNome").val(selectedRowData.nome);
               $("#editCnpj").val(selectedRowData.cnpj);
               $("#editEmail").val(selectedRowData.email);
