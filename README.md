@@ -54,22 +54,22 @@ Matérias abordadas:
 - <span><strong> 1 - Login e cadastro de empresas:</strong>
 <br>O Login deve ser feito utilizando o email e senha. A página de Gestão de Empresas permite cadastrar as empresas com a qual a StartRH está atuando, podendo realizar o cadastro, atualizar e excluir.</span>
 <p align="center">
-  <img src="https://github.com/marlonakio/PIM_IV_ADS_UNIP/blob/main/.github/sistema/1_r_gestao_empresa.gif?raw=true" alt="UNIP - PROJETO INTEGRADO MULTIDISCIPLINAR" width="50%"/></p>
+  <img src="https://github.com/marlonakio/PIM_IV_ADS_UNIP/blob/main/.github/sistema/1_r_gestao_empresa.gif?raw=true" alt="UNIP - PROJETO INTEGRADO MULTIDISCIPLINAR" width="60%"/></p>
 
 - <span><strong>2 - Gestão de funcionários:</strong>
 <br>Esta página permite realizar o cadastro de cada funcionário respectivo a sua empresa. Assim como excluir e editar seu registro.</span>
 <p align="center">
-  <img src="https://github.com/marlonakio/PIM_IV_ADS_UNIP/blob/main/.github/sistema/2_r_gestao_funcionario.gif?raw=true" alt="UNIP - PROJETO INTEGRADO MULTIDISCIPLINAR" width="50%"/></p>
+  <img src="https://github.com/marlonakio/PIM_IV_ADS_UNIP/blob/main/.github/sistema/2_r_gestao_funcionario.gif?raw=true" alt="UNIP - PROJETO INTEGRADO MULTIDISCIPLINAR" width="60%"/></p>
 
 - <span><strong>3 - Agendar Pagamento:</strong>
 <br>Esta página permite agendar o pagamento do salário dos funcionários de forma massiva, podendo editar quantas horas serão pagas no respectivo mês.</span>
 <p align="center">
-  <img src="https://github.com/marlonakio/PIM_IV_ADS_UNIP/blob/main/.github/sistema/3_r_agendar-pagamento.gif?raw=true" alt="UNIP - PROJETO INTEGRADO MULTIDISCIPLINAR" width="50%"/></p>
+  <img src="https://github.com/marlonakio/PIM_IV_ADS_UNIP/blob/main/.github/sistema/3_r_agendar-pagamento.gif?raw=true" alt="UNIP - PROJETO INTEGRADO MULTIDISCIPLINAR" width="60%"/></p>
 
 - <span><strong>4 - Histórico de pagamento:</strong>
 <br>Esta página permite visualizar o pagamento do salário de cada funcionário podendo filtrar por empresa e período.</span>
 <p align="center">
-  <img src="https://github.com/marlonakio/PIM_IV_ADS_UNIP/blob/main/.github/sistema/4_r_historico_pagamento.gif?raw=true" alt="UNIP - PROJETO INTEGRADO MULTIDISCIPLINAR" width="50%"/></p>
+  <img src="https://github.com/marlonakio/PIM_IV_ADS_UNIP/blob/main/.github/sistema/4_r_historico_pagamento.gif?raw=true" alt="UNIP - PROJETO INTEGRADO MULTIDISCIPLINAR" width="60%"/></p>
 <br>
 
 
@@ -78,17 +78,17 @@ Matérias abordadas:
 - <span><strong> 1 - Login e a receber:</strong>
 <br>O Login deve ser feito utilizando o email e senha. A página a receber permite o funcionário visualizar o próximo holerite disponível.</span>
 <p align="center">
-  <img src="https://github.com/marlonakio/PIM_IV_ADS_UNIP/blob/main/.github/sistema/1_f_a_receber.gif?raw=true" alt="UNIP - PROJETO INTEGRADO MULTIDISCIPLINAR" width="50%"/></p>
+  <img src="https://github.com/marlonakio/PIM_IV_ADS_UNIP/blob/main/.github/sistema/1_f_a_receber.gif?raw=true" alt="UNIP - PROJETO INTEGRADO MULTIDISCIPLINAR" width="60%"/></p>
 
 - <span><strong> 2 - Histórico de Holerites:</strong>
 <br>Nesta página o funcionário poderá consultar todos os holerites já gerados.</span>
 <p align="center">
-  <img src="https://github.com/marlonakio/PIM_IV_ADS_UNIP/blob/main/.github/sistema/2_f_historico_holerite.gif?raw=true" alt="UNIP - PROJETO INTEGRADO MULTIDISCIPLINAR" width="50%"/></p>
+  <img src="https://github.com/marlonakio/PIM_IV_ADS_UNIP/blob/main/.github/sistema/2_f_historico_holerite.gif?raw=true" alt="UNIP - PROJETO INTEGRADO MULTIDISCIPLINAR" width="60%"/></p>
 
 - <span><strong> 3 - Histórico Salarial:</strong>
 <br>Os gráficos auxiliam na visualização dos últimos pagamentos e a evolução salarial que o colaborador obteve.</span>
 <p align="center">
-  <img src="https://github.com/marlonakio/PIM_IV_ADS_UNIP/blob/main/.github/sistema/3_f_historico_salarial.gif?raw=true" alt="UNIP - PROJETO INTEGRADO MULTIDISCIPLINAR" width="50%"/></p>
+  <img src="https://github.com/marlonakio/PIM_IV_ADS_UNIP/blob/main/.github/sistema/3_f_historico_salarial.gif?raw=true" alt="UNIP - PROJETO INTEGRADO MULTIDISCIPLINAR" width="60%"/></p>
 
 ## 🟢 Nota
 A nota alcançada ao concluirmos e apresentarmos este projeto foi `8`.
